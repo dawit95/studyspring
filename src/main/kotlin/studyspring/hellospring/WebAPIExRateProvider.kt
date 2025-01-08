@@ -1,10 +1,12 @@
 package studyspring.hellospring
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.springframework.stereotype.Component
 import java.math.BigDecimal
 import java.net.HttpURLConnection
 import java.net.URL
 
+@Component
 class WebAPIExRateProvider: ExRateProvider {
 
     override fun getExRate(currency: String): BigDecimal {
