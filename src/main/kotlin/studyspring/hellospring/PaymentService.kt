@@ -9,23 +9,22 @@ import java.time.ZoneId
 
 class PaymentService {
     fun prepare(orderId: Long, currency: String, foreignCurrencyAmount: BigDecimal): Payment {
-        // 환율 가져오기
+        val exRate: BigDecimal = getExchageRate(currency)
+        val convertedAmount = foreignCurrencyAmount.multiply(exRate)
+        val validUntil = LocalDateTime.now(ZoneId.of("UTC")).plusMinutes(30L)
+
+        return Payment(orderId, currency, foreignCurrencyAmount, exRate, convertedAmount, validUntil)
+    }
+
+    private fun getExchageRate(currency: String): BigDecimal {
         val url = URL("https://open.er-api.com/v6/latest/$currency")
         val connection = url.openConnection() as HttpURLConnection
-
         val response = connection.inputStream.bufferedReader().use { it.readText() }
 
         val objectMapper = ObjectMapper()
         val data: ExRateData = objectMapper.readValue(response, ExRateData::class.java)
         val exRate: BigDecimal = data.rates["KRW"]!!
-
-        // 금액 계산
-        val convertedAmount = foreignCurrencyAmount.multiply(exRate)
-
-        // 유효 시간 설정
-        val validUntil = LocalDateTime.now(ZoneId.of("UTC")).plusMinutes(30L)
-
-        return Payment(orderId, currency, foreignCurrencyAmount, exRate, convertedAmount, validUntil)
+        return exRate
     }
 }
 
