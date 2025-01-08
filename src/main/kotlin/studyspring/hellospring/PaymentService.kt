@@ -5,10 +5,10 @@ import java.time.LocalDateTime
 import java.time.ZoneId
 
 class PaymentService {
-    private val exRateProvider: WebAPIExRateProvider = WebAPIExRateProvider()
+    private val exRateProvider: ExRateProvider = WebAPIExRateProvider()
 
     fun prepare(orderId: Long, currency: String, foreignCurrencyAmount: BigDecimal): Payment {
-        val exRate: BigDecimal = exRateProvider.getExchageRate(currency)
+        val exRate: BigDecimal = exRateProvider.getExRate(currency)
         val convertedAmount = foreignCurrencyAmount.multiply(exRate)
         val validUntil = LocalDateTime.now(ZoneId.of("UTC")).plusMinutes(30L)
 
