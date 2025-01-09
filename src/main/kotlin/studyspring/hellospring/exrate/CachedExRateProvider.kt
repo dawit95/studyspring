@@ -1,4 +1,4 @@
-package studyspring.hellospring
+package studyspring.hellospring.exrate
 
 import java.math.BigDecimal
 import java.time.LocalDateTime

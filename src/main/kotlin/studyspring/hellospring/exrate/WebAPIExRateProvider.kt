@@ -1,4 +1,4 @@
-package studyspring.hellospring
+package studyspring.hellospring.exrate
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import java.math.BigDecimal
