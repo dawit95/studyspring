@@ -7,9 +7,12 @@ import org.springframework.context.annotation.Configuration
 class ObjectFactory {
     @Bean
     fun getPaymentService(): PaymentService {
-        return PaymentService(exRateProvider())
+        return PaymentService(cachedExRateProvider())
     }
 
     @Bean
-    public fun exRateProvider() = WebAPIExRateProvider()
+    fun cachedExRateProvider() = CachedExRateProvider(exRateProvider())
+
+    @Bean
+    fun exRateProvider() = WebAPIExRateProvider()
 }
