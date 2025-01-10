@@ -2,7 +2,7 @@ package studyspring.hellospring
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import studyspring.hellospring.Payment.PaymentService
+import studyspring.hellospring.payment.PaymentService
 import studyspring.hellospring.exrate.CachedExRateProvider
 import studyspring.hellospring.exrate.WebAPIExRateProvider
 

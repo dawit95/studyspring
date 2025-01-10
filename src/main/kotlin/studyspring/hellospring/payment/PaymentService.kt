@@ -1,4 +1,4 @@
-package studyspring.hellospring.Payment
+package studyspring.hellospring.payment
 
 import studyspring.hellospring.exrate.ExRateProvider
 import java.math.BigDecimal

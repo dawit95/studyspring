@@ -1,7 +1,7 @@
 package studyspring.hellospring
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
-import studyspring.hellospring.Payment.PaymentService
+import studyspring.hellospring.payment.PaymentService
 import java.math.BigDecimal
 import java.util.concurrent.TimeUnit
 
